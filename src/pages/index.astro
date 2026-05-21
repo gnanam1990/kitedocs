@@ -1,0 +1,59 @@
+---
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { getCollection } from "astro:content";
+import "../styles/global.css";
+
+const t = (await getCollection("tutorials")).sort((a, b) => a.data.order - b.data.order);
+const r = (await getCollection("reference")).sort((a, b) => a.data.order - b.data.order);
+const g = (await getCollection("guides")).sort((a, b) => a.data.order - b.data.order);
+
+const groups = [
+  { heading: "Tutorials", slug: "tutorials", items: t, blurb: "Step-by-step recipes. Working code." },
+  { heading: "Reference", slug: "reference", items: r, blurb: "Endpoints, addresses, chain IDs." },
+  { heading: "Guides", slug: "guides", items: g, blurb: "Per-language integration walkthroughs." },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KiteDocs — Community docs for Kite</title>
+    <meta name="description" content="Community tutorials, reference and integration guides for building on Kite." />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <SiteHeader current="" />
+
+    <section style="background: linear-gradient(135deg, #FEF8F0 0%, #F1EBE0 50%, #E3D7C2 100%);" class="border-b border-kite-border">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <p class="text-xs font-bold tracking-widest uppercase text-kite-primary mb-3">v0.1 · Community-owned</p>
+        <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-kite-fg">Build on Kite.</h1>
+        <p class="mt-5 text-lg text-kite-fg/70 max-w-2xl mx-auto">
+          Tutorials, reference, and integration guides — written by Kite devs, for Kite devs.
+          PRs welcome on <a href="https://github.com/gnanam1990/kitedocs" target="_blank" class="text-kite-primary underline underline-offset-2 hover:text-kite-fg font-semibold">GitHub</a>.
+        </p>
+      </div>
+    </section>
+
+    <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-3 gap-6 w-full">
+      {groups.map(({ heading, slug, items, blurb }) => (
+        <section class="rounded-xl border border-kite-border bg-kite-card p-6">
+          <div class="text-[10px] font-bold tracking-widest uppercase text-kite-primary mb-2">{heading}</div>
+          <p class="text-sm text-kite-fg/65 mb-4">{blurb}</p>
+          <ul class="space-y-1.5 text-sm">
+            {items.slice(0, 6).map((entry) => (
+              <li>
+                <a href={`/${slug}/${entry.slug}`} class="text-kite-fg/80 hover:text-kite-fg underline underline-offset-2">
+                  {entry.data.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>

@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import DocLayout from "../../layouts/DocLayout.astro";
+
+export async function getStaticPaths() {
+  const all = [
+    ...(await getCollection("tutorials")),
+    ...(await getCollection("reference")),
+    ...(await getCollection("guides")),
+  ];
+  return all.map((entry) => ({
+    params: { collection: entry.collection, slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const current = `/${entry.collection}/${entry.slug}`;
+---
+<DocLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  current={current}
+  preview={entry.data.preview}
+>
+  <Content />
+  <hr />
+  <p class="text-xs text-kite-fg/55">
+    Last updated {entry.data.last_updated ?? "—"}. Improve this page on
+    <a href={`https://github.com/gnanam1990/kitedocs/edit/main/src/content/${entry.collection}/${entry.slug}.md`} target="_blank" rel="noreferrer">GitHub</a>.
+  </p>
+</DocLayout>

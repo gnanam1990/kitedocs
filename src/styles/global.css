@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --kite-bg: #FEF8F0;
+  --kite-fg: #1F1A14;
+  --kite-primary: #9B8564;
+  --kite-accent: #485C11;
+  --kite-border: #E3D7C2;
+  --kite-muted: #F1EBE0;
+  --kite-card: #FAF2E6;
+}
+
+body {
+  background-color: var(--kite-bg);
+  color: var(--kite-fg);
+  font-family: 'Geist', 'Inter', system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+.prose h1 { @apply text-4xl font-bold tracking-tight mt-2 mb-4; }
+.prose h2 { @apply text-2xl font-semibold mt-12 mb-4 tracking-tight; }
+.prose h3 { @apply text-xl font-semibold mt-8 mb-3; }
+.prose p  { @apply text-base leading-relaxed my-4 text-kite-fg/85; }
+.prose ul { @apply list-disc pl-6 my-4 space-y-1; }
+.prose ol { @apply list-decimal pl-6 my-4 space-y-1; }
+.prose a  { @apply underline underline-offset-2 hover:text-kite-primary transition-colors; }
+.prose code { @apply font-mono text-sm bg-kite-muted px-1.5 py-0.5 rounded-sm; }
+.prose pre { @apply !bg-[#2A241B] !text-[#F1EBE0] rounded-lg p-4 overflow-x-auto text-sm font-mono leading-relaxed my-6 border border-kite-border; }
+.prose pre code { @apply !bg-transparent !p-0 text-[#F1EBE0]; }
+.prose blockquote { @apply border-l-4 border-kite-primary/40 pl-4 italic text-kite-fg/70 my-6; }
+.prose table { @apply w-full text-sm my-6 border-collapse; }
+.prose th { @apply text-left font-semibold py-2 border-b border-kite-border; }
+.prose td { @apply py-2 border-b border-kite-border/60; }
+.prose hr { @apply border-kite-border my-10; }

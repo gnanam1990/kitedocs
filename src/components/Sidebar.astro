@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+const t = (await getCollection("tutorials")).sort((a, b) => a.data.order - b.data.order);
+const r = (await getCollection("reference")).sort((a, b) => a.data.order - b.data.order);
+const g = (await getCollection("guides")).sort((a, b) => a.data.order - b.data.order);
+const { current = "" } = Astro.props as { current?: string };
+
+const section = (heading: string, slug: string, items: typeof t) => ({
+  heading, slug, items,
+});
+
+const groups = [
+  section("Tutorials", "tutorials", t),
+  section("Reference", "reference", r),
+  section("Guides", "guides", g),
+];
+---
+<nav class="text-sm space-y-6">
+  {groups.map(({ heading, slug, items }) => (
+    <div>
+      <div class="text-[10px] font-bold tracking-widest uppercase text-kite-primary mb-2">{heading}</div>
+      <ul class="space-y-1">
+        {items.map((entry) => {
+          const href = `/${slug}/${entry.slug}`;
+          const active = current === href;
+          return (
+            <li>
+              <a
+                href={href}
+                class={`block px-2 py-1 rounded-sm transition-colors ${
+                  active
+                    ? "bg-kite-muted text-kite-fg font-semibold"
+                    : "text-kite-fg/70 hover:text-kite-fg hover:bg-kite-muted/60"
+                }`}
+              >
+                {entry.data.title}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ))}
+</nav>

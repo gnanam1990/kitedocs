@@ -1,0 +1,41 @@
+---
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import Sidebar from "../components/Sidebar.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: string;
+  preview?: boolean;
+}
+
+const { title, description, current, preview } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} · KiteDocs</title>
+    {description && <meta name="description" content={description} />}
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <SiteHeader current={current} />
+    <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid lg:grid-cols-[16rem,1fr] gap-10">
+      <aside class="hidden lg:block sticky top-20 self-start max-h-[calc(100vh-6rem)] overflow-y-auto">
+        <Sidebar current={current} />
+      </aside>
+      <article class="prose max-w-3xl">
+        {preview && (
+          <span class="inline-flex items-center px-2 py-0.5 mb-4 text-[10px] font-bold tracking-widest uppercase rounded-sm bg-kite-primary/15 text-kite-primary border border-kite-primary/30">
+            PREVIEW
+          </span>
+        )}
+        <slot />
+      </article>
+    </main>
+    <SiteFooter />
+  </body>
+</html>

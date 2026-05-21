@@ -1,0 +1,24 @@
+---
+const { current = "" } = Astro.props as { current?: string };
+const link = (slug: string, label: string) => `
+  <a href="/${slug}" class="text-xs font-semibold tracking-widest uppercase ${
+    current.startsWith(slug) ? 'text-kite-fg' : 'text-kite-fg/55 hover:text-kite-fg'
+  } transition-colors">${label}</a>
+`;
+---
+<header class="sticky top-0 z-50 w-full border-b border-kite-border bg-kite-bg/95 backdrop-blur-sm">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-2 hover:opacity-90 transition-opacity">
+      <span class="flex items-center justify-center w-7 h-7 rounded-sm bg-kite-primary text-kite-bg font-bold text-lg leading-none">K</span>
+      <span class="text-xl font-bold tracking-tight text-kite-fg">Kite</span>
+      <span class="hidden sm:inline-block h-4 w-px bg-kite-border"></span>
+      <span class="hidden sm:inline-block text-xs font-bold tracking-widest text-kite-primary uppercase">KiteDocs</span>
+    </a>
+    <nav class="flex items-center gap-6">
+      <Fragment set:html={link('tutorials', 'Tutorials')} />
+      <Fragment set:html={link('reference', 'Reference')} />
+      <Fragment set:html={link('guides', 'Guides')} />
+      <a href="https://github.com/gnanam1990/kitedocs" target="_blank" rel="noreferrer" class="text-xs font-semibold tracking-widest uppercase text-kite-fg/55 hover:text-kite-fg transition-colors">GitHub</a>
+    </nav>
+  </div>
+</header>
