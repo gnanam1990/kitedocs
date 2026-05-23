@@ -4,6 +4,13 @@ Community tutorials, reference, and integration guides for building on [Kite](ht
 
 > Not affiliated with Kite Foundation. Official docs: [docs.gokite.ai](https://docs.gokite.ai).
 
+## Deployment
+
+- **Production:** https://kitedocs.vercel.app
+- **Host:** Vercel (`kitedocs`)
+- **Status:** static Astro build verified
+- **Last verified:** 2026-05-23
+
 ## Stack
 
 - [Astro 5](https://astro.build) with content collections (`src/content/`)
