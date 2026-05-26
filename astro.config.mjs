@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
-  site: "https://kitedocs.vercel.app",
+  site: "https://kitedocs.dev",
   integrations: [tailwind({ applyBaseStyles: false }), mdx()],
   markdown: {
     shikiConfig: {

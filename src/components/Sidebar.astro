@@ -18,9 +18,7 @@ const groups = [
 <nav class="text-sm space-y-6">
   {groups.map(({ heading, slug, items }) => (
     <div>
-      <a href={`/${slug}`} class="inline-flex text-[10px] font-bold uppercase text-kite-primary hover:text-kite-accent mb-2">
-        {heading}
-      </a>
+      <div class="text-[10px] font-bold tracking-widest uppercase text-kite-primary mb-2">{heading}</div>
       <ul class="space-y-1">
         {items.map((entry) => {
           const href = `/${slug}/${entry.slug}`;
@@ -31,8 +29,8 @@ const groups = [
                 href={href}
                 class={`block px-2 py-1 rounded-sm transition-colors ${
                   active
-                    ? "bg-kite-primary text-kite-bg font-semibold"
-                    : "text-kite-fg/70 hover:text-kite-fg hover:bg-kite-muted"
+                    ? "bg-kite-muted text-kite-fg font-semibold"
+                    : "text-kite-fg/70 hover:text-kite-fg hover:bg-kite-muted/60"
                 }`}
               >
                 {entry.data.title}

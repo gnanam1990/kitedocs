@@ -22,63 +22,29 @@ const groups = [
     <title>KiteDocs — Community docs for Kite</title>
     <meta name="description" content="Community tutorials, reference and integration guides for building on Kite." />
   </head>
-  <body class="min-h-screen flex flex-col kite-shell">
+  <body class="min-h-screen flex flex-col">
     <SiteHeader current="" />
 
-    <section class="border-b border-kite-border">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 grid lg:grid-cols-[1.15fr,0.85fr] gap-8 items-center">
-        <div>
-          <p class="text-xs font-bold uppercase text-kite-primary mb-3">v0.1 · Community-owned</p>
-          <h1 class="text-4xl sm:text-6xl font-black text-kite-fg max-w-3xl">
-            Ship Kite integrations without hunting through tabs.
-          </h1>
-          <p class="mt-5 text-lg text-kite-fg/70 max-w-2xl">
-            Tutorials, references, and integration notes for builders working with Kite accounts, payments, RPCs, and app surfaces.
-          </p>
-          <div class="mt-7 flex flex-wrap gap-3">
-            <a href="/tutorials/getting-started" class="rounded-full bg-kite-primary px-5 py-3 text-sm font-bold text-kite-bg hover:bg-kite-accent transition-colors">Start building</a>
-            <a href="/reference/rpc-endpoints" class="rounded-full border border-kite-border px-5 py-3 text-sm font-bold text-kite-fg/80 hover:border-kite-primary hover:text-kite-fg transition-colors">RPC reference</a>
-          </div>
-        </div>
-        <div class="signal-panel rounded-2xl border border-kite-border p-5 shadow-2xl shadow-black/20">
-          <div class="flex items-center justify-between border-b border-kite-border pb-3">
-            <span class="text-xs font-bold uppercase text-kite-primary">Builder route</span>
-            <span class="text-xs text-kite-fg/50">mainnet ready</span>
-          </div>
-          <div class="mt-5 space-y-3 text-sm">
-            <div class="flex items-center justify-between rounded-lg bg-kite-bg/70 p-3">
-              <span class="font-semibold">1. Connect RPC</span>
-              <span class="text-kite-accent">/reference</span>
-            </div>
-            <div class="flex items-center justify-between rounded-lg bg-kite-bg/70 p-3">
-              <span class="font-semibold">2. Send transaction</span>
-              <span class="text-kite-primary">/tutorials</span>
-            </div>
-            <div class="flex items-center justify-between rounded-lg bg-kite-bg/70 p-3">
-              <span class="font-semibold">3. Integrate app</span>
-              <span class="text-kite-violet">/guides</span>
-            </div>
-          </div>
-          <pre class="mt-5 overflow-x-auto rounded-lg border border-kite-border bg-[#071210] p-4 text-xs leading-relaxed text-kite-fg/80"><code>curl https://rpc.gokite.ai
-→ account, pay, sign, build</code></pre>
-        </div>
+    <section style="background: linear-gradient(135deg, #FEF8F0 0%, #F1EBE0 50%, #E3D7C2 100%);" class="border-b border-kite-border">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <p class="text-xs font-bold tracking-widest uppercase text-kite-primary mb-3">v0.1 · Community-owned</p>
+        <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-kite-fg">Build on Kite.</h1>
+        <p class="mt-5 text-lg text-kite-fg/70 max-w-2xl mx-auto">
+          Tutorials, reference, and integration guides — written by Kite devs, for Kite devs.
+          PRs welcome on <a href="https://github.com/gnanam1990/kitedocs" target="_blank" class="text-kite-primary underline underline-offset-2 hover:text-kite-fg font-semibold">GitHub</a>.
+        </p>
       </div>
     </section>
 
-    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-5 w-full">
+    <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-3 gap-6 w-full">
       {groups.map(({ heading, slug, items, blurb }) => (
-        <section class="rounded-xl border border-kite-border bg-kite-card/85 p-5 shadow-2xl shadow-black/10">
-          <div class="flex items-start justify-between gap-3">
-            <div>
-              <div class="text-[10px] font-bold uppercase text-kite-primary mb-2">{heading}</div>
-              <p class="text-sm text-kite-fg/65 mb-4">{blurb}</p>
-            </div>
-            <a href={`/${slug}`} class="rounded-full border border-kite-border px-3 py-1 text-[10px] font-bold uppercase text-kite-fg/60 hover:border-kite-primary hover:text-kite-primary">All</a>
-          </div>
+        <section class="rounded-xl border border-kite-border bg-kite-card p-6">
+          <div class="text-[10px] font-bold tracking-widest uppercase text-kite-primary mb-2">{heading}</div>
+          <p class="text-sm text-kite-fg/65 mb-4">{blurb}</p>
           <ul class="space-y-1.5 text-sm">
             {items.slice(0, 6).map((entry) => (
               <li>
-                <a href={`/${slug}/${entry.slug}`} class="block rounded-md px-2 py-2 text-kite-fg/80 hover:bg-kite-muted hover:text-kite-fg transition-colors">
+                <a href={`/${slug}/${entry.slug}`} class="text-kite-fg/80 hover:text-kite-fg underline underline-offset-2">
                   {entry.data.title}
                 </a>
               </li>

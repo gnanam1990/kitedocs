@@ -5,16 +5,14 @@ export default {
     extend: {
       colors: {
         kite: {
-          bg: "#061917",
-          fg: "#F5FFF8",
-          primary: "#36F2B5",
-          accent: "#FFD166",
-          violet: "#8B7CFF",
-          coral: "#FF766C",
-          border: "#264D47",
-          muted: "#0E2B28",
-          destructive: "#FF766C",
-          card: "#102724",
+          bg: "#FEF8F0",
+          fg: "#1F1A14",
+          primary: "#9B8564",
+          accent: "#485C11",
+          border: "#E3D7C2",
+          muted: "#F1EBE0",
+          destructive: "#A23A1A",
+          card: "#FAF2E6",
         },
       },
       fontFamily: {

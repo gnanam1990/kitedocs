@@ -9,19 +9,16 @@ const collectionMeta = {
     heading: "Tutorials",
     eyebrow: "Learn by shipping",
     description: "Hands-on flows for accounts, payments, signing, and your first Kite transaction.",
-    accent: "text-kite-primary",
   },
   reference: {
     heading: "Reference",
     eyebrow: "Copy-ready details",
     description: "RPC URLs, chain IDs, contract addresses, glossary entries, and common questions.",
-    accent: "text-kite-accent",
   },
   guides: {
     heading: "Guides",
     eyebrow: "Integration playbooks",
     description: "Language and framework notes for wiring Kite into real applications.",
-    accent: "text-kite-violet",
   },
 } as const;
 
@@ -54,31 +51,33 @@ const meta = collectionMeta[collection];
     <title>{meta.heading} · KiteDocs</title>
     <meta name="description" content={meta.description} />
   </head>
-  <body class="min-h-screen flex flex-col kite-shell">
+  <body class="min-h-screen flex flex-col">
     <SiteHeader current={collection} />
-    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
-      <section class="signal-panel rounded-2xl border border-kite-border p-6 sm:p-8 shadow-2xl shadow-black/20">
-        <p class={`text-xs font-bold uppercase ${meta.accent}`}>{meta.eyebrow}</p>
-        <h1 class="mt-3 text-4xl sm:text-5xl font-black text-kite-fg">{meta.heading}</h1>
-        <p class="mt-4 max-w-2xl text-kite-fg/70">{meta.description}</p>
-      </section>
 
-      <section class="mt-8 grid md:grid-cols-2 xl:grid-cols-3 gap-5">
-        {entries.map((entry) => (
-          <a href={`/${collection}/${entry.slug}`} class="group rounded-xl border border-kite-border bg-kite-card/85 p-5 shadow-2xl shadow-black/10 transition-colors hover:border-kite-primary">
-            <div class="flex items-center justify-between gap-3">
-              <span class="text-[10px] font-bold uppercase text-kite-primary">Doc {entry.data.order}</span>
-              {entry.data.preview && (
-                <span class="rounded-full border border-kite-primary/40 px-2 py-0.5 text-[10px] font-bold uppercase text-kite-primary">Preview</span>
-              )}
-            </div>
-            <h2 class="mt-4 text-xl font-bold text-kite-fg group-hover:text-kite-primary transition-colors">{entry.data.title}</h2>
-            <p class="mt-3 text-sm leading-relaxed text-kite-fg/65">{entry.data.description}</p>
-            <span class="mt-5 inline-flex text-sm font-bold text-kite-accent">Open guide</span>
-          </a>
-        ))}
-      </section>
+    <section style="background: linear-gradient(135deg, #FEF8F0 0%, #F1EBE0 50%, #E3D7C2 100%);" class="border-b border-kite-border">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <p class="text-xs font-bold tracking-widest uppercase text-kite-primary mb-3">{meta.eyebrow}</p>
+        <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-kite-fg">{meta.heading}</h1>
+        <p class="mt-5 text-lg text-kite-fg/70 max-w-2xl mx-auto">{meta.description}</p>
+      </div>
+    </section>
+
+    <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+      {entries.map((entry) => (
+        <a href={`/${collection}/${entry.slug}`} class="block rounded-xl border border-kite-border bg-kite-card p-6 hover:border-kite-primary transition-colors">
+          <div class="flex items-center justify-between gap-3">
+            <span class="text-[10px] font-bold tracking-widest uppercase text-kite-primary">Doc {entry.data.order}</span>
+            {entry.data.preview && (
+              <span class="rounded-sm border border-kite-primary/30 px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase text-kite-primary">Preview</span>
+            )}
+          </div>
+          <h2 class="mt-4 text-xl font-bold tracking-tight text-kite-fg">{entry.data.title}</h2>
+          <p class="mt-3 text-sm leading-relaxed text-kite-fg/65">{entry.data.description}</p>
+          <span class="mt-5 inline-flex text-sm font-semibold text-kite-primary underline underline-offset-2">Open guide</span>
+        </a>
+      ))}
     </main>
+
     <SiteFooter />
   </body>
 </html>
