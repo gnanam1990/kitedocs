@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --kite-bg: #FEF8F0;
-  --kite-fg: #1F1A14;
-  --kite-primary: #9B8564;
-  --kite-accent: #485C11;
-  --kite-border: #E3D7C2;
-  --kite-muted: #F1EBE0;
-  --kite-card: #FAF2E6;
+  --kite-bg: #061917;
+  --kite-bg-soft: #09211e;
+  --kite-fg: #f5fff8;
+  --kite-primary: #36f2b5;
+  --kite-accent: #ffd166;
+  --kite-violet: #8b7cff;
+  --kite-coral: #ff766c;
+  --kite-border: #264d47;
+  --kite-muted: #0e2b28;
+  --kite-card: #102724;
 }
 
 body {
@@ -20,18 +23,38 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.prose h1 { @apply text-4xl font-bold tracking-tight mt-2 mb-4; }
-.prose h2 { @apply text-2xl font-semibold mt-12 mb-4 tracking-tight; }
-.prose h3 { @apply text-xl font-semibold mt-8 mb-3; }
-.prose p  { @apply text-base leading-relaxed my-4 text-kite-fg/85; }
-.prose ul { @apply list-disc pl-6 my-4 space-y-1; }
-.prose ol { @apply list-decimal pl-6 my-4 space-y-1; }
-.prose a  { @apply underline underline-offset-2 hover:text-kite-primary transition-colors; }
-.prose code { @apply font-mono text-sm bg-kite-muted px-1.5 py-0.5 rounded-sm; }
-.prose pre { @apply !bg-[#2A241B] !text-[#F1EBE0] rounded-lg p-4 overflow-x-auto text-sm font-mono leading-relaxed my-6 border border-kite-border; }
-.prose pre code { @apply !bg-transparent !p-0 text-[#F1EBE0]; }
-.prose blockquote { @apply border-l-4 border-kite-primary/40 pl-4 italic text-kite-fg/70 my-6; }
-.prose table { @apply w-full text-sm my-6 border-collapse; }
-.prose th { @apply text-left font-semibold py-2 border-b border-kite-border; }
-.prose td { @apply py-2 border-b border-kite-border/60; }
+a {
+  text-decoration-thickness: 1px;
+}
+
+.kite-shell {
+  background:
+    linear-gradient(rgba(54, 242, 181, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(54, 242, 181, 0.045) 1px, transparent 1px),
+    var(--kite-bg);
+  background-size: 36px 36px;
+}
+
+.signal-panel {
+  background:
+    linear-gradient(135deg, rgba(54, 242, 181, 0.12), transparent 42%),
+    linear-gradient(225deg, rgba(139, 124, 255, 0.16), transparent 44%),
+    var(--kite-card);
+}
+
+.prose h1 { @apply text-4xl font-bold mt-1 mb-4 text-kite-fg; }
+.prose h2 { @apply text-2xl font-semibold mt-12 mb-4 text-kite-fg; }
+.prose h3 { @apply text-xl font-semibold mt-8 mb-3 text-kite-fg; }
+.prose p  { @apply text-base leading-relaxed my-4 text-kite-fg/80; }
+.prose ul { @apply list-disc pl-6 my-4 space-y-1 text-kite-fg/80; }
+.prose ol { @apply list-decimal pl-6 my-4 space-y-1 text-kite-fg/80; }
+.prose li::marker { color: var(--kite-primary); }
+.prose a  { @apply text-kite-primary underline underline-offset-4 hover:text-kite-accent transition-colors; }
+.prose code { @apply font-mono text-sm bg-kite-muted text-kite-accent px-1.5 py-0.5 rounded; }
+.prose pre { @apply !bg-[#071210] !text-[#DFFFEF] rounded-lg p-4 overflow-x-auto text-sm font-mono leading-relaxed my-6 border border-kite-border shadow-2xl shadow-black/20; }
+.prose pre code { @apply !bg-transparent !p-0 text-[#DFFFEF]; }
+.prose blockquote { @apply border-l-4 border-kite-primary/60 pl-4 italic text-kite-fg/70 my-6; }
+.prose table { @apply w-full text-sm my-6 border-collapse overflow-hidden rounded-lg; }
+.prose th { @apply text-left font-semibold py-2 border-b border-kite-border text-kite-fg; }
+.prose td { @apply py-2 border-b border-kite-border/60 text-kite-fg/75; }
 .prose hr { @apply border-kite-border my-10; }

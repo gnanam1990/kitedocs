@@ -1,24 +1,40 @@
 ---
 const { current = "" } = Astro.props as { current?: string };
-const link = (slug: string, label: string) => `
-  <a href="/${slug}" class="text-xs font-semibold tracking-widest uppercase ${
-    current.startsWith(slug) ? 'text-kite-fg' : 'text-kite-fg/55 hover:text-kite-fg'
-  } transition-colors">${label}</a>
-`;
+const links = [
+  { slug: "tutorials", label: "Tutorials" },
+  { slug: "reference", label: "Reference" },
+  { slug: "guides", label: "Guides" },
+];
 ---
-<header class="sticky top-0 z-50 w-full border-b border-kite-border bg-kite-bg/95 backdrop-blur-sm">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-    <a href="/" class="flex items-center gap-2 hover:opacity-90 transition-opacity">
-      <span class="flex items-center justify-center w-7 h-7 rounded-sm bg-kite-primary text-kite-bg font-bold text-lg leading-none">K</span>
-      <span class="text-xl font-bold tracking-tight text-kite-fg">Kite</span>
-      <span class="hidden sm:inline-block h-4 w-px bg-kite-border"></span>
-      <span class="hidden sm:inline-block text-xs font-bold tracking-widest text-kite-primary uppercase">KiteDocs</span>
+<header class="sticky top-0 z-50 w-full border-b border-kite-border/80 bg-kite-bg/90 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-16 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-3 sm:py-0">
+    <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+      <span class="relative flex items-center justify-center w-9 h-9 rounded-md bg-kite-primary text-kite-bg font-black text-lg leading-none shadow-lg shadow-kite-primary/20">
+        K
+        <span class="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-kite-accent border-2 border-kite-bg"></span>
+      </span>
+      <span class="leading-tight">
+        <span class="block text-lg font-black text-kite-fg">KiteDocs</span>
+        <span class="block text-[11px] font-semibold uppercase text-kite-primary">Builder field guide</span>
+      </span>
     </a>
-    <nav class="flex items-center gap-6">
-      <Fragment set:html={link('tutorials', 'Tutorials')} />
-      <Fragment set:html={link('reference', 'Reference')} />
-      <Fragment set:html={link('guides', 'Guides')} />
-      <a href="https://github.com/gnanam1990/kitedocs" target="_blank" rel="noreferrer" class="text-xs font-semibold tracking-widest uppercase text-kite-fg/55 hover:text-kite-fg transition-colors">GitHub</a>
+    <nav class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+      {links.map(({ slug, label }) => {
+        const active = current === slug || current.startsWith(`/${slug}`);
+        return (
+          <a
+            href={`/${slug}`}
+            class={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-bold uppercase transition-colors ${
+              active
+                ? "border-kite-primary bg-kite-primary text-kite-bg"
+                : "border-kite-border text-kite-fg/65 hover:border-kite-primary/70 hover:text-kite-fg"
+            }`}
+          >
+            {label}
+          </a>
+        );
+      })}
+      <a href="https://github.com/gnanam1990/kitedocs" target="_blank" rel="noreferrer" class="shrink-0 rounded-full border border-kite-border px-3 py-1.5 text-xs font-bold uppercase text-kite-fg/65 hover:border-kite-accent hover:text-kite-accent transition-colors">GitHub</a>
     </nav>
   </div>
 </header>
